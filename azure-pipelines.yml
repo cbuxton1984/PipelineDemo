@@ -13,18 +13,18 @@ stages:
   - stage: validate
     jobs:
     - job: validate
-      continueonerror: false
+      continueOnError: false
       steps:
       - task: TerraformInstaller@0
-        displayname: 'install'
+      displayName: 'install'
         inputs:
          terraformVersion: 'latest'
       - task: TerraformCLI@0
-        displayname: 'init'
+        displayName: 'init'
         inputs:
           command: 'init'
       - task: TerraformCLI@0
-        displayname: 'validate'
+        displayName: 'validate'
         inputs:
           command: 'validate'
 
@@ -33,22 +33,22 @@ stages:
     condition: succeeded('validate')
     jobs:
     - job: validate
-      continueonerror: false
+      continueOnError: false
       steps:
       - task: TerraformInstaller@0
-        displayname: 'install'
+        displayName: 'install'
         inputs:
          terraformVersion: 'latest'
       - task: TerraformCLI@0
-        displayname: 'init'
+        displayName: 'init'
         inputs:
           command: 'init'
       - task: TerraformCLI@0
-        displayname: 'validate'
+        displayName: 'validate'
         inputs:
           command: 'validate'
       - task: TerraformCLI@0
-        displayname: 'plan'
+        displayName: 'plan'
         inputs:
          command: 'plan'
 
