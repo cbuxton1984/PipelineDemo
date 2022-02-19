@@ -20,10 +20,7 @@ provider "azurerm" {
 
 module "rg" {
   source = "./modules/rg"
-  rg_name = var.rgname
+  rg_name = var.rg_name
   rg_location = var.location
-  rg_tags = {
-    Environment = "Test"
-    Owner = "Chris"
-  }
+  rg_tags = var.tags
 }

@@ -9,4 +9,11 @@ tags = {
 
 # Resource Group
 
-rgname = "cb-pipelinedemo"
+rg_name = "cb-pipelinedemo"
+
+# Virtual Network
+
+vnet_name = "cb-vnet"
+
+vnet_address_space = ["10.0.0.0/16"]
+
