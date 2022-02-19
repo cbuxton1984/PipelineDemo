@@ -12,7 +12,7 @@ pool:
 stages:
   - stage: validate
   - jobs:
-  -job: validate
+  - job: validate
    continueonerror: false
    steps:
 - task: TerraformInstaller@0
@@ -34,8 +34,8 @@ displayname: 'validate'
   - stage: plan
   dependson: [validate]
   condition: succeeded('validate')
-  jobs:
-  -job: plan
+  - jobs:
+  - job: plan
    continueonerror: false
    steps:
 - task: TerraformInstaller@0
