@@ -51,3 +51,12 @@ module "log_analytics" {
   la_retention = var.la_retention
   tags = var.tags
 }
+
+module "automation_account" {
+  source = "./modules/automation_account"
+  aa_name = var.aa_name
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  aa_sku = var.aa_sku
+  tags = var.tags
+}

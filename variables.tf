@@ -57,3 +57,15 @@ variable "la_retention" {
       description = "Log Analytics Retention"
       type = number
 }
+
+# Automation Account
+
+ variable "aa_name" {
+       description = "Automation Account Name"
+       type = string
+ }
+
+variable "aa_sku" {
+      description = "Automation Account SKU"
+      type = string
+}

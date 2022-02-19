@@ -30,3 +30,9 @@ la_name = "cb-la"
 la_sku = "Free"
 
 la_retention = 7
+
+# Automation Account
+
+aa_name = "cb-automation"
+
+aa_sku = "Basic"
