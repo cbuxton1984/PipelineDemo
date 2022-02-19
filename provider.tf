@@ -41,3 +41,13 @@ module "subnet" {
   rg_name = module.rg.rg_name
   subnet_address_prefixes = var.subnet_address_prefixes
 }
+
+module "log_analytics" {
+  source = "./modules/log_analytics"
+  la_name = var.la_name
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  la_sku = var.la_sku
+  la_retention = var.la_retention
+  tags = var.tags
+}

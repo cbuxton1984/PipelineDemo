@@ -23,3 +23,10 @@ subnet_name = "cb-subnet"
 
 subnet_address_prefixes = ["10.0.0.1/24"]
 
+# Log Analytics
+
+la_name = "cb-la"
+
+la_sku = "Free"
+
+la_retention = 7

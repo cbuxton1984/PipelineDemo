@@ -40,3 +40,20 @@ variable "subnet_address_prefixes" {
       description = "Subnet Prefixes"
       type = list
 }
+
+# Log Analytics
+
+variable "la_name" {
+      description = "Log Analytics Name"
+      type = string
+}
+
+variable "la_sku" {
+      description = "Log Analytics SKU"
+      type = string
+}
+
+variable "la_retention" {
+      description = "Log Analytics Retention"
+      type = number
+}
