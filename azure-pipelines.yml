@@ -16,7 +16,7 @@ stages:
       continueOnError: false
       steps:
       - task: TerraformInstaller@0
-      displayName: 'install'
+        displayName: 'install'
         inputs:
          terraformVersion: 'latest'
       - task: TerraformCLI@0
