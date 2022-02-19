@@ -10,6 +10,6 @@ variable "rg_location" {
 
 variable "rg_tags" {
     description = "Resource Group Tags"
-    type = map(string)
+    type = map(any)
     default = {}
 }

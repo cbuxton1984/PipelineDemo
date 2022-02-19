@@ -18,3 +18,12 @@ provider "azurerm" {
   features {}
 }
 
+module "rg" {
+  source = "./modules/rg"
+  rg_name = var.rgname
+  rg_location = var.location
+  rg_tags = {
+    Environment = "Test"
+    Owner = "Chris"
+  }
+}
