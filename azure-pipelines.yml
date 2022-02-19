@@ -14,12 +14,11 @@ stages:
   - jobs:
   - job: validate
   - continueonerror: false
-   steps:
+  - steps:
 - task: TerraformInstaller@0
  displayname: 'install'
   inputs:
     terraformVersion: 'latest'
-
 - task: TerraformCLI@0
 displayname: 'init'
   inputs:
@@ -37,7 +36,7 @@ displayname: 'validate'
   - jobs:
   - job: plan
   - continueonerror: false
-   steps:
+  - steps:
 - task: TerraformInstaller@0
  displayname: 'install'
   inputs:
