@@ -15,5 +15,11 @@ variable "rg_name" {
 
 variable "vnet_address_space" {
       description = "vNet Address Space"
-      type = string
+      type = list
+}
+
+variable "tags" {
+    description = "Resource Group Tags"
+    type = map(any)
+    default = {}
 }

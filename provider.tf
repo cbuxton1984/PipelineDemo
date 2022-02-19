@@ -24,3 +24,20 @@ module "rg" {
   rg_location = var.location
   rg_tags = var.tags
 }
+
+module "vnet" {
+  source = "./modules/vnet"
+  vnet_name = var.vnet_name
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  vnet_address_space = var.vnet_address_space
+  tags = var.tags
+}
+
+module "subnet" {
+  source = "./modules/subnet"
+  subnet_name = var.subnet_name
+  vnet_name = module.vnet.vnet_name
+  rg_name = module.rg.rg_name
+  subnet_address_prefixes = var.subnet_address_prefixes
+}
