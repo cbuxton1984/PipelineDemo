@@ -11,7 +11,7 @@ pool:
 
 stages:
   - stage: validate
-  jobs:
+  - jobs:
   -job: validate
    continueonerror: false
    steps:
