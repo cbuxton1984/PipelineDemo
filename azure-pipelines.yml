@@ -19,11 +19,11 @@ stages:
         displayName: 'install'
         inputs:
          terraformVersion: 'latest'
-      - task: TerraformCLI@0
+      - task: TerraformTaskV2@2
         displayName: 'init'
         inputs:
           command: 'init'
-      - task: TerraformCLI@0
+      - task: TerraformTaskV2@2
         displayName: 'validate'
         inputs:
           command: 'validate'
@@ -39,15 +39,15 @@ stages:
         displayName: 'install'
         inputs:
          terraformVersion: 'latest'
-      - task: TerraformCLI@0
+      - task: TerraformTaskV2@2
         displayName: 'init'
         inputs:
           command: 'init'
-      - task: TerraformCLI@0
+      - task: TerraformTaskV2@2
         displayName: 'validate'
         inputs:
           command: 'validate'
-      - task: TerraformCLI@0
+      - task: TerraformTaskV2@2
         displayName: 'plan'
         inputs:
          command: 'plan'
