@@ -9,20 +9,52 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+stages:
+  - stage: validate
+  jobs:
+  -job: validate
+   continueonerror: false
+   steps:
 - task: TerraformInstaller@0
+ displayname: 'install'
   inputs:
     terraformVersion: 'latest'
 
 - task: TerraformCLI@0
+displayname: 'init'
   inputs:
-    command: 'validate'
+    command: 'init'
     allowTelemetryCollection: true
 - task: TerraformCLI@0
+displayname: 'validate'
   inputs:
     command: 'validate'
     allowTelemetryCollection: true
 
+  - stage: plan
+  dependson: [validate]
+  condition: succeeded('validate')
+  jobs:
+  -job: plan
+   continueonerror: false
+   steps:
+- task: TerraformInstaller@0
+ displayname: 'install'
+  inputs:
+    terraformVersion: 'latest'
+
 - task: TerraformCLI@0
+displayname: 'init'
+  inputs:
+    command: 'init'
+    allowTelemetryCollection: true
+- task: TerraformCLI@0
+displayname: 'validate'
+  inputs:
+    command: 'validate'
+    allowTelemetryCollection: true
+- task: TerraformCLI@0
+displayname: 'plan'
   inputs:
     command: 'plan'
     allowTelemetryCollection: true
