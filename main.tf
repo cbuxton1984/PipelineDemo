@@ -27,9 +27,18 @@ module "subnet" {
   subnet_address_prefixes = var.subnet_address_prefixes
 }
 
-module "publicip" {
+module "publicip1" {
   source = "./modules/public_ip"
   pi_name = "cb-win-1-publicip"
+  allocation_method = "Static"
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  tags = var.tags
+}
+
+module "publicip2" {
+  source = "./modules/public_ip"
+  pi_name = "cb-rhel-1-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -64,7 +73,7 @@ module "updatemanagement" {
   location = var.location
   rg_name = var.rg_name
   la_id = module.log_analytics.la_id
-  la_name = module.log_analytics.la_name
+  la_workspace_name = module.log_analytics.la_workspace_name
 }
 
 # Virtual Machines
@@ -80,8 +89,27 @@ module "windows_vm" {
   os_sku = "2019-Datacenter"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id
-  publicip_id = module.publicip.publicip_id
+  publicip_id = module.publicip1.publicip_id
   tags = var.tags
   la_workspace_id = module.log_analytics.la_workspace_id
   la_primary_shared_key = module.log_analytics.la_primary_shared_key
+  la_agent_version = "1.0"
+}
+
+module "rhel_vm" {
+  source ="./modules/rhel_vm_with_la_agent"
+  vm_name = "cb-rhel-1"
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  vm_size = "Standard_B1ls"
+  vm_user = "chris"
+  vm_pass = "n_Q`!$PkvNR+6YVW"
+  os_sku = "82gen2"
+  os_version = "latest"
+  subnet_id = module.subnet.subnet_id
+  publicip_id = module.publicip2.publicip_id
+  tags = var.tags
+  la_workspace_id = module.log_analytics.la_workspace_id
+  la_primary_shared_key = module.log_analytics.la_primary_shared_key
+  la_agent_version = "1.8"
 }

@@ -13,7 +13,7 @@ variable "la_id" {
     type = string
 }
 
-variable "la_name" {
+variable "la_workspace_name" {
     description = "Log Analytics Name"
     type = string
 }

@@ -11,13 +11,14 @@ resource "azurerm_network_interface" "interface" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "win_vm" {
+resource "azurerm_linux_virtual_machine" "linux_vm" {
   name = var.vm_name
   resource_group_name = var.rg_name
   location = var.location
   size = var.vm_size
   admin_username = var.vm_user
   admin_password = var.vm_pass
+  disable_password_authentication = false
   network_interface_ids = [azurerm_network_interface.interface.id]
   tags = var.tags
 
@@ -27,18 +28,18 @@ resource "azurerm_windows_virtual_machine" "win_vm" {
   }
 
   source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
+    publisher = "RedHat"
+    offer     = "RHEL"
     sku       = var.os_sku
     version   = var.os_version
   }
 }
 
 resource "azurerm_virtual_machine_extension" "la_workspace" {
-    name = azurerm_windows_virtual_machine.win_vm.name
-    virtual_machine_id = azurerm_windows_virtual_machine.win_vm.id
+    name = azurerm_linux_virtual_machine.linux_vm.name
+    virtual_machine_id = azurerm_linux_virtual_machine.linux_vm.id
     publisher = "Microsoft.EnterpriseCloud.Monitoring"
-    type = "MicrosoftMonitoringAgent"
+    type = "OMSAgentforLinux"
     type_handler_version = var.la_agent_version
     auto_upgrade_minor_version = "true"
 
