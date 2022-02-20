@@ -19,6 +19,11 @@ variable "aa_sku" {
       default = "Basic"
 }
 
+variable "la_id" {
+      description = "Log Analytics ID"
+      type = string
+}
+
 variable "tags" {
     description = "Resource Group Tags"
     type = map(any)

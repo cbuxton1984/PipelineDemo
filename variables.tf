@@ -69,3 +69,10 @@ variable "aa_sku" {
       description = "Automation Account SKU"
       type = string
 }
+
+# Update Management
+
+variable "um_solution_name" {
+       description = "Update Management Solution Name"
+       type = string
+ }

@@ -21,18 +21,22 @@ vnet_address_space = ["10.0.0.0/16"]
 
 subnet_name = "cb-subnet"
 
-subnet_address_prefixes = ["10.0.0.1/24"]
+subnet_address_prefixes = ["10.0.1.0/24"]
 
 # Log Analytics
 
 la_name = "cb-la"
 
-la_sku = "Free"
+la_sku = "PerGB2018"
 
-la_retention = 7
+la_retention = 30
 
 # Automation Account
 
 aa_name = "cb-automation"
 
 aa_sku = "Basic"
+
+# Update Management
+
+um_solution_name = "CB-UpdateMgmt"

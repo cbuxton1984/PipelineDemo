@@ -13,3 +13,7 @@ output "la_secondary_shared_key" {
 output "la_workspace_id" {
     value = azurerm_log_analytics_workspace.la.workspace_id
 }
+
+output "la_workspace_name" {
+    value = azurerm_log_analytics_workspace.la.name
+}

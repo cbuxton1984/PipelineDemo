@@ -6,3 +6,9 @@ resource "azurerm_automation_account" "automation" {
   sku_name = var.aa_sku
   tags = var.tags
 }
+
+resource "azurerm_log_analytics_linked_service" "link_aa_to_la" {
+  resource_group_name = var.rg_name
+  workspace_id = var.la_id
+  read_access_id = azurerm_automation_account.automation.id
+}
