@@ -9,19 +9,19 @@ tags = {
 
 # Resource Group
 
-rg_name = "cb-pipelinedemo"
+rg_name = "cb-update-demo"
 
 # Virtual Network
 
 vnet_name = "cb-vnet"
 
-vnet_address_space = ["10.0.0.0/16"]
+vnet_address_space = ["10.69.0.0/16"]
 
 # Subnet
 
 subnet_name = "cb-subnet"
 
-subnet_address_prefixes = ["10.0.1.0/24"]
+subnet_address_prefixes = ["10.69.1.0/24"]
 
 # Log Analytics
 
