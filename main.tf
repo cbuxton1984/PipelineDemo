@@ -12,7 +12,7 @@ module "rg" {
 
 module "vnet" {
   source = "./modules/vnet"
-  vnet_name = var.vnet_name
+  vnet_name = "${var.rg_name}-${var.vnet_name}"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   vnet_address_space = var.vnet_address_space
@@ -21,7 +21,7 @@ module "vnet" {
 
 module "subnet" {
   source = "./modules/subnet"
-  subnet_name = var.subnet_name
+  subnet_name = "${var.rg_name}-${var.vnet_name}-${var.subnet_name}"
   vnet_name = module.vnet.vnet_name
   rg_name = module.rg.rg_name
   subnet_address_prefixes = var.subnet_address_prefixes
@@ -84,8 +84,8 @@ module "windows_vm" {
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   vm_size = "Standard_B1s"
-  vm_user = "chris"
-  vm_pass = "n_Q`!$PkvNR+6YVW"
+  vm_user = var.admuser
+  vm_pass = var.admpass
   os_sku = "2019-Datacenter"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id
@@ -102,8 +102,8 @@ module "rhel_vm" {
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   vm_size = "Standard_B1ls"
-  vm_user = "chris"
-  vm_pass = "n_Q`!$PkvNR+6YVW"
+  vm_user = var.admuser
+  vm_pass = var.admpass
   os_sku = "82gen2"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id

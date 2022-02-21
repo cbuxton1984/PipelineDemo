@@ -45,7 +45,7 @@ resource "azurerm_virtual_machine_extension" "la_workspace" {
 
     settings = <<SETTINGS
         {
-            "workspaceID": "${var.la_workspace_id}"
+            "workspaceId": "${var.la_workspace_id}"
         }
     SETTINGS
 

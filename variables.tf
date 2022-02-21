@@ -29,6 +29,17 @@ variable "vnet_address_space" {
       type = list
 }
 
+variable "admuser" {
+      description = "Admin User"
+      type = string
+}
+
+variable "admpass" {
+      description = "Admin Password"
+      type = string
+      sensitive = true
+}
+
 # Subnet
 
 variable "subnet_name" {
