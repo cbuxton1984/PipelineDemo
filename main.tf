@@ -38,12 +38,22 @@ module "publicip1" {
 
 module "publicip2" {
   source = "./modules/public_ip"
+  pi_name = "cb-win-2-publicip"
+  allocation_method = "Static"
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  tags = var.tags
+}
+
+module "publicip3" {
+  source = "./modules/public_ip"
   pi_name = "cb-rhel-1-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   tags = var.tags
 }
+
 
 # Workspaces
 
@@ -78,9 +88,10 @@ module "updatemanagement" {
 
 # Virtual Machines
 
-module "windows_vm" {
+module "windows_vm_2019" {
+  count = 1
   source ="./modules/win_vm_with_la_agent"
-  vm_name = "cb-win-1"
+  vm_name = "cb-win2k19-${count.index}"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   vm_size = "Standard_B1s"
@@ -96,6 +107,25 @@ module "windows_vm" {
   la_agent_version = "1.0"
 }
 
+module "windows_vm_2016" {
+  count = 1
+  source ="./modules/win_vm_with_la_agent"
+  vm_name = "cb-win2k16-${count.index}"
+  location = module.rg.rg_location
+  rg_name = module.rg.rg_name
+  vm_size = "Standard_B1s"
+  vm_user = var.admuser
+  vm_pass = var.admpass
+  os_sku = "2016-Datacenter"
+  os_version = "latest"
+  subnet_id = module.subnet.subnet_id
+  publicip_id = module.publicip2.publicip_id
+  tags = var.tags
+  la_workspace_id = module.log_analytics.la_workspace_id
+  la_primary_shared_key = module.log_analytics.la_primary_shared_key
+  la_agent_version = "1.0"
+}
+
 module "rhel_vm" {
   source ="./modules/rhel_vm_with_la_agent"
   vm_name = "cb-rhel-1"
@@ -104,10 +134,10 @@ module "rhel_vm" {
   vm_size = "Standard_B1ls"
   vm_user = var.admuser
   vm_pass = var.admpass
-  os_sku = "82gen2"
+  os_sku = "76-gen2"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id
-  publicip_id = module.publicip2.publicip_id
+  publicip_id = module.publicip3.publicip_id
   tags = var.tags
   la_workspace_id = module.log_analytics.la_workspace_id
   la_primary_shared_key = module.log_analytics.la_primary_shared_key
