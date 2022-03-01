@@ -20,6 +20,7 @@ resource "azurerm_windows_virtual_machine" "win_vm" {
   admin_password = var.vm_pass
   network_interface_ids = [azurerm_network_interface.interface.id]
   tags = var.tags
+  patch_mode = "Manual"
 
   os_disk {
     caching              = "ReadWrite"
