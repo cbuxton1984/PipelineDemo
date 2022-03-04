@@ -26,10 +26,10 @@ module "subnet" {
   rg_name = module.rg.rg_name
   subnet_address_prefixes = var.subnet_address_prefixes
 }
-
+/*
 module "publicip1" {
   source = "./modules/public_ip"
-  pi_name = "cb-win-1-publicip"
+  pi_name = "Win2K19-demo-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -38,7 +38,7 @@ module "publicip1" {
 
 module "publicip2" {
   source = "./modules/public_ip"
-  pi_name = "cb-win-2-publicip"
+  pi_name = "Win2K16-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -47,13 +47,13 @@ module "publicip2" {
 
 module "publicip3" {
   source = "./modules/public_ip"
-  pi_name = "cb-rhel-1-publicip"
+  pi_name = "rhel76-demo-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   tags = var.tags
 }
-
+*/
 
 # Workspaces
 
@@ -89,9 +89,9 @@ module "updatemanagement" {
 # Virtual Machines
 
 module "windows_vm_2019" {
-  count = 1
+  count = 2
   source ="./modules/win_vm_with_la_agent"
-  vm_name = "cb-win2k19-${count.index}"
+  vm_name = "win2k19-demo-${count.index + 1}"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
   vm_size = "Standard_B1s"
@@ -108,12 +108,11 @@ module "windows_vm_2019" {
 }
 
 module "windows_vm_2016" {
-  count = 1
   source ="./modules/win_vm_with_la_agent"
-  vm_name = "cb-win2k16-${count.index}"
+  vm_name = "win2k16-demo-1"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
-  vm_size = "Standard_B1s"
+  vm_size = "Standard_B2s"
   vm_user = var.admuser
   vm_pass = var.admpass
   os_sku = "2016-Datacenter"
@@ -131,7 +130,7 @@ module "rhel_vm" {
   vm_name = "cb-rhel-1"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
-  vm_size = "Standard_B1ls"
+  vm_size = "Standard_B1s"
   vm_user = var.admuser
   vm_pass = var.admpass
   os_sku = "76-gen2"
