@@ -27,7 +27,7 @@ module "subnet" {
   subnet_address_prefixes = var.subnet_address_prefixes
 }
 
-module "publicip1" {
+module "publicip2019" {
   count = 2
   source = "github.com/cbuxton1984/terraform_modules/public_ip"
   pi_name = "Win2K19-demo-publicip-${count.index}"
@@ -37,7 +37,7 @@ module "publicip1" {
   tags = var.tags
 }
 
-module "publicip2" {
+module "publicip2016" {
   source = "github.com/cbuxton1984/terraform_modules/public_ip"
   pi_name = "Win2K16-publicip"
   allocation_method = "Static"
@@ -46,7 +46,7 @@ module "publicip2" {
   tags = var.tags
 }
 
-module "publicip3" {
+module "publiciprhel" {
   source = "github.com/cbuxton1984/terraform_modules/public_ip"
   pi_name = "rhel76-demo-publicip"
   allocation_method = "Static"
@@ -101,7 +101,7 @@ module "windows_vm_2019" {
   os_sku = "2019-Datacenter"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id
-  publicip_id = module.publicip1[count.index].publicip_id
+  publicip_id = module.publicip2019[count.index].publicip_id
   tags = var.tags
   la_workspace_id = module.log_analytics.la_workspace_id
   la_primary_shared_key = module.log_analytics.la_primary_shared_key
@@ -119,7 +119,7 @@ module "windows_vm_2016" {
   os_sku = "2016-Datacenter"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id
-  publicip_id = module.publicip2.publicip_id
+  publicip_id = module.publicip2016.publicip_id
   tags = var.tags
   la_workspace_id = module.log_analytics.la_workspace_id
   la_primary_shared_key = module.log_analytics.la_primary_shared_key
@@ -137,7 +137,7 @@ module "rhel_vm" {
   os_sku = "76-gen2"
   os_version = "latest"
   subnet_id = module.subnet.subnet_id
-  publicip_id = module.publicip3.publicip_id
+  publicip_id = module.publiciprhel.publicip_id
   tags = var.tags
   la_workspace_id = module.log_analytics.la_workspace_id
   la_primary_shared_key = module.log_analytics.la_primary_shared_key
