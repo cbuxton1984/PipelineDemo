@@ -19,7 +19,7 @@ pr:
       - /azure-env-init/env/03_BackupAlerting
 
 pool:
-  name: "Ubuntu-Agents"
+  vmImage: "ubuntu-latest"
 
 variables:
   - template: 01_Deployment.yml
