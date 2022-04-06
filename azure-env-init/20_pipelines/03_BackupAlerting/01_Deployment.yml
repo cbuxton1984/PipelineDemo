@@ -1,7 +1,7 @@
 variables:
   ##production
   enable_production: true
-  teardownEnvironment_production: true
+  teardownEnvironment_production: false
 
   #deployment info
   deployment_reason: "regular"
