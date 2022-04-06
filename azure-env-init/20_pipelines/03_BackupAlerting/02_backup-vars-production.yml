@@ -1,5 +1,5 @@
 variables:
-  serviceConnectionName_production: "gen-prd-hs-mgmt-sub-01-armconnection" 
+  serviceConnectionName_production: "cb-mgmt-arm-connection" 
   tfStateResourceGroupName_production: "cb-tfstates"
   tfStateStorageAccountName_production: "tfstate4kl0e"
   tfStateContainerName_production: "tfstates"
