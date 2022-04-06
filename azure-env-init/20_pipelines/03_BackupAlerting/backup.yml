@@ -18,8 +18,8 @@ pr:
       - /azure-env-init/20_pipelines/03_BackupAlerting
       - /azure-env-init/env/03_BackupAlerting
 
- pool:
-   name: "Ubuntu-Agents"
+pool:
+  name: "Ubuntu-Agents"
 
 variables:
   - template: 01_Deployment.yml
