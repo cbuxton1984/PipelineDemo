@@ -22,22 +22,22 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "backupfailures" {
   enabled        = true
   # Count all requests with server error result code grouped into 5-minute bins
   # Backup Success Query
-  /*
   query       = <<-QUERY
   AddonAzureBackupJobs
     | where JobOperation=="Backup"
     | summarize arg_max(TimeGenerated,*) by JobUniqueId
     | where JobStatus=="Completed"
   QUERY
-  */
+  
   # Backup Failed Query
+  /*
   query       = <<-QUERY
   AddonAzureBackupJobs
     | where JobOperation=="Backup"
     | summarize arg_max(TimeGenerated,*) by JobUniqueId
     | where JobStatus=="Failed"  
   QUERY
-  
+  */
 
   severity    = 3
   frequency   = 5
