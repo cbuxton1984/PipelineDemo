@@ -7,4 +7,4 @@ variables:
   tfStateFile_production: "backup-alerting.tfstate"
   envConfiguration_production: "../../../azure-env-init/env/03_BackupAlerting/01_backup_alerting.tfvars"
   #agent_pool_production: ""
-  enable_apply_production: false
+  enable_apply_production: true
