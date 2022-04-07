@@ -1,6 +1,6 @@
 variables:
   ##production
-  enable_production: true
+  enable_production: false
   teardownEnvironment_production: false
 
   #deployment info
