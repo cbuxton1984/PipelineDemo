@@ -17,7 +17,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "backupfailures" {
   action {
     action_group           = [azurerm_monitor_action_group.backupfailures.id]
   }
-  data_source_id = data.azurerm_log_analytics_workspace.edf_log_ws.id
+  data_source_id = data.azurerm_log_analytics_workspace.log_ws.id
   description    = "Alert when total results cross threshold"
   enabled        = true
   # Count all requests with server error result code grouped into 5-minute bins
