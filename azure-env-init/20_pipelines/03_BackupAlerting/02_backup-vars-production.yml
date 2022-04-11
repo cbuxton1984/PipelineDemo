@@ -7,4 +7,4 @@ variables:
   tfStateFile_production: "backup-alerting.tfstate" # Changed for lab, renamed to remove cust references
   envConfiguration_production: "../../../azure-env-init/env/03_BackupAlerting/01_backup_alerting.tfvars" # Changed for lab, renamed to remove cust references
   #agent_pool_production: "" # Changed for lab, removed customer agent pool
-  enable_apply_production: true
+  enable_apply_production: false
