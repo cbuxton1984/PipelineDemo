@@ -60,6 +60,6 @@ stages:
       tfStateFile: ${{ parameters.tf_statefile }}
       envConfiguration: ${{ parameters.env_configuration }}
       enable: ${{ parameters.enable_stage }}
-      #agentPool: ${{ parameters.agent_pool }}
+      #agentPool: ${{ parameters.agent_pool }} # Disabled for lab
       enableApply: ${{ parameters.enable_apply }}
       

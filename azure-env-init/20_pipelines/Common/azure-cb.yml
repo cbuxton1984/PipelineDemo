@@ -62,7 +62,7 @@ stages:
   - stage: ${{ parameters.stageName }}
     condition: always()
     displayName: ${{ parameters.stageName }}
-    #pool: ${{ parameters.agentPool }}
+    #pool: ${{ parameters.agentPool }} # Disabled for lab, no need to specify pool since we're using the shared pool
     jobs:
       - job: ${{ parameters.teardownJobName }}
         condition: and(eq(variables['build.sourceBranch'], 'refs/heads/main'), eq('${{ parameters.teardownEnvironment }}', true), eq('${{ parameters.enable }}', true))

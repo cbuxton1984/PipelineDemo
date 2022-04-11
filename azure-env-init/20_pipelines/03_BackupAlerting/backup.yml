@@ -17,13 +17,13 @@ pr:
       - /azure-env-init/10_projects/03_BackupAlerting
       - /azure-env-init/20_pipelines/03_BackupAlerting
       - /azure-env-init/env/03_BackupAlerting
-
+# Changed for lab, enabled shared Aure pool since customer pool is disabled
 pool:
   vmImage: "ubuntu-latest"
 
 variables:
   - template: 01_Deployment.yml
-  - template: 02_backup-vars-production.yml
+  - template: 02_backup-vars-production.yml # Renamed for lab
 
 ## Anything below should not be modified ##
 stages:
